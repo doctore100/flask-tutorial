@@ -5,10 +5,11 @@ from werkzeug.exceptions import abort
 
 from flaskr.db import get_db
 
-bp = Blueprint('blog', __name__)
+bp = Blueprint('blog', __name__, url_prefix='/blog')
 
 
 @bp.route('/')
+@login_required
 def index():
     db = get_db()
     posts = db.execute(
